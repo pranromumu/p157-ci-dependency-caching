@@ -1,3 +1,4 @@
 pytest
 requests
-python-dateutilcolorama
+python-dateutil
+colorama
