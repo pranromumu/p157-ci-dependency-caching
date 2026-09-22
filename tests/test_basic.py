@@ -1,3 +1,3 @@
 def test_basic_math():
-    assert 10 + 5 == 15
-    # Testing cache hit
+    assert 2 + 2 == 4
+    assert 10 > 5
