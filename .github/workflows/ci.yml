@@ -1,0 +1,25 @@
+name: CI Dependency Caching
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          # THE MAGIC TRICK: Enable pip caching based on requirements.txt
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        # If cache HIT, this step is almost instant. If MISS, it downloads.
+        run: pip install -r requirements.txt
+
+      - name: Run Pytest
+        run: pytest -v -s
